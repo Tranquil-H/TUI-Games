@@ -14,8 +14,10 @@ def TypeWrite(text, delay=0.05):
 
 def main():
     TypeWrite(f'Welcome to Russian Roulette!\n')
-        
+    time.sleep(1)
     while True:
+        print()
+        os.system('cls') if os.name == 'nt' else os.system('clear')
         global rounds
         global stakes
         chance = round((1/rounds)*100)
@@ -25,6 +27,7 @@ def main():
         TypeWrite('Are you ready to play? y/n')
 
         if input().lower() in ['y', 'yes', '']:
+            stakes += abs((6 - rounds) * random.randint(100, 200))
             print()
             TypeWrite('Then let\'s begin...', 0.3)
             print()
@@ -50,6 +53,7 @@ def main():
 
             if rounds == slot_bullet:
                 print('BANG!')
+                print()
                 time.sleep(3)
                 TypeWrite(f'Earned ${stakes}')
                 break
@@ -57,9 +61,8 @@ def main():
                 TypeWrite('Click!', 0.002)
                 rounds -= 1
                 TypeWrite('Phew...')
+                time.sleep(1)
                 print()
-
-            stakes += abs((6 - rounds) * random.randint(100, 200))
         else:
             TypeWrite('Then...')
             TypeWrite('GET OUT!!', 0.0005)
@@ -71,6 +74,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-    time.sleep(2)
-    print()
-    TypeWrite('Thanks for playing! :D')
