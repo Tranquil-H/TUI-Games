@@ -17,19 +17,19 @@ def main():
         
     while True:
         global rounds
-        global slot_bullet
         global stakes
         chance = round((1/rounds)*100)
         TypeWrite('Here is your current status:')
         TypeWrite(f'Rounds: {rounds}\nChance of Death: %{chance}')
         TypeWrite(f'Stakes: ${stakes}')
         TypeWrite('Are you ready to play? y/n')
-        ans = input()
-        if ans.lower() in ['y', 'yes', '']:
+
+        if input().lower() in ['y', 'yes', '']:
             print()
             TypeWrite('Then let\'s begin...', 0.3)
             print()
             time.sleep(3)
+
             if rounds == slot_bullet:
                 print('BANG!')
                 print()
@@ -42,10 +42,12 @@ def main():
                 rounds -= 1
                 TypeWrite('Lucky...')
                 print()
+
             TypeWrite('Alright...')
             TypeWrite('Now it\'s my turn!')
             print()
             time.sleep(2)
+
             if rounds == slot_bullet:
                 print('BANG!')
                 time.sleep(3)
@@ -56,10 +58,15 @@ def main():
                 rounds -= 1
                 TypeWrite('Phew...')
                 print()
-            stakes += abs((6 - rounds) *400)
+
+            stakes += abs((6 - rounds) * random.randint(100, 200))
         else:
             TypeWrite('Then...')
             TypeWrite('GET OUT!!', 0.0005)
+            print()
+            time.sleep(0.5)
+            if rounds < 6:
+                TypeWrite(f'Earned ${stakes}')
             break
 
 if __name__ == '__main__':
