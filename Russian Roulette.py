@@ -10,27 +10,23 @@ def TypeWrite(text, delay=0.05):
 
 if os.name == 'nt':
     import msvcrt
-    echo_on = '@ECHO ON'
-    echo_off = '@ECHO OFF'
     def flush_input():
         while msvcrt.kbhit():
             msvcrt.getch()
-        os.system(echo_on)
+        os.system('@ECHO ON')
 else:
     import termios
     import sys
-    echo_on = 'stty echo'
-    echo_off = 'stty -echo'
     def flush_input():
         termios.tcflush(sys.stdin, termios.TCIOFLUSH)
-        os.system(echo_on)
+        os.system('stty echo')
 
 def main():
     rounds = 6
     slot_bullet = random.randint(1, rounds)
     stakes = 100
     os.system('cls') if os.name == 'nt' else os.system('clear')
-    os.system(echo_off)
+    os.system('@ECHO OFF') if os.name == 'nt' else os.system('stty -echo')
     TypeWrite(f'Welcome to Russian Roulette!\n')
     time.sleep(1)
     while True:
@@ -45,7 +41,7 @@ def main():
 
         flush_input()
         if input().lower() in ['y', 'yes', '']:
-            os.system(echo_off)
+            os.system('@ECHO OFF') if os.name == 'nt' else os.system('stty -echo')
             print()
             TypeWrite('Then let\'s begin...', 0.15)
             print()
@@ -82,7 +78,7 @@ def main():
                 time.sleep(1)
                 print()
         else:
-            os.system(echo_off)
+            os.system('@ECHO OFF') if os.name == 'nt' else os.system('stty -echo')
             print()
             TypeWrite('Then...')
             TypeWrite('GET OUT!!', 0.0005)
