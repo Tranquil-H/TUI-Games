@@ -3,6 +3,10 @@ import random
 import time
 
 def TypeWrite(text, delay=0.05):
+    """
+    Creates a typewriting animation where each character in a given text is
+    printed to stdout one a time.
+    """
     for char in text:
         print(char, end='', flush=True)
         time.sleep(delay)
@@ -22,6 +26,9 @@ else:
         os.system('stty echo')
 
 def main():
+    """
+    The main mechanics of the Russian Roulette system.
+    """
     rounds = 6
     slot_bullet = random.randint(1, rounds)
     stakes = 100
