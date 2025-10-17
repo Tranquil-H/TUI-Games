@@ -87,6 +87,7 @@ def main():
             if rounds < 6:
                 TypeWrite(f'Earned ${stakes}')
             break
+    os.system('stty echo') or os.system('@ECHO ON')
 
 if __name__ == '__main__':
     main()
